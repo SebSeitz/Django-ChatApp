@@ -1,18 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+    .success-message {
+        color: green;
+        font-size: 18px;
+        padding-bottom: 8px;
+    }
+</style>
 <h1>Login</h1>
 
 {% if wrongPassword %}
-    <p>Username or password is wrong</p>
+<p>Username or password is wrong</p>
+{% endif %}
+
+{% if success %}
+<div class="success-message">You have successfully registered!</div>
 {% endif %}
 
 <form method="POST" action="/login/">
     {% csrf_token %}
-    <input type="hidden" name="redirect" value="{{ redirect }}">
+    <input type="hidden" value="{{redirect}}" name="redirect">
     <div><input name="username" type="text"></div>
     <div><input name="password" type="password"></div>
-    <div><button>Login</button></div>
+    <div>
+        <button>Login</button>
+        <a href="../register">Register</a>
+    </div>
 </form>
 
 {% endblock %}

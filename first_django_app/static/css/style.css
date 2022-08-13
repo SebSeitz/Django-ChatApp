@@ -1,0 +1,11 @@
+.page-content {
+    padding: 100px 100px;
+}
+
+.color-gray {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.success-message{
+    color: rgb(58, 160, 58);
+}
