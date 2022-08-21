@@ -24,7 +24,7 @@
             <!-- Title -->
             <span class="mdl-layout-title">
                 {% if request.user.is_authenticated %}
-                Welcome, {{ request.user.first_name }}
+                Welcome, {{ request.user.username }}
                 {% else %}
                 Welcome, please log in
                 {% endif %}

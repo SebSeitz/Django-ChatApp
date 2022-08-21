@@ -9,7 +9,7 @@
 <div id="messageContainer">
 {% for message in messages %}
 <div>
-    <span class="color-gray">[{{ message.created_at }}] </span> {{ message.author }}: <i>{{ message.text }} </i>
+    <span class="color-gray">[{{ message.created_at.isoformat }}] </span> {{ message.author }}: <i>{{ message.text }} </i>
 </div>
 {% endfor %}
 </div>
@@ -25,24 +25,33 @@
         try {
             messageContainer.innerHTML += `
             <div id="deleteMessage">
-              <span class="color-gray">[DATUM]</span> {{ request.user.first_name }}: <i class="color-gray">${messageField}</i>
+              <span class="color-gray">[DATUM]</span> {{ request.user.username }}: <i class="color-gray">${messageField}</i>
             </div>
             `;
-            await fetch('/chat/', {
+
+            let response = await fetch('/chat/', {
                 method: 'POST',
                 body: fd
             });
-            
+
+
+            let json = await response.json();
+
+            console.log(json);
+            let finalJson = JSON.parse(json);
+            console.log(finalJson);
+
             document.getElementById('deleteMessage').remove();
             messageContainer.innerHTML += `
             <div>
-              <span class="color-gray">[DATUM]</span> {{ request.user.first_name }}: <i>${messageField}</i>
+              <span class="color-gray">[${finalJson.fields.created_at}]</span> {{ request.user.username }}: <i>${messageField}</i>
             </div>
             `;
 
             console.log('success');
 
         } catch (e) {
+
             console.error('An error occurred', e)
         }
     }
