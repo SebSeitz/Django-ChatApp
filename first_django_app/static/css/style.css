@@ -9,3 +9,12 @@
 .success-message{
     color: rgb(58, 160, 58);
 }
+
+.mdl-button {
+    border-radius: 8px !important;
+    margin-top: 8px;
+}
+
+.green{
+    background-color: rgb(73, 179, 143) !important;
+}
