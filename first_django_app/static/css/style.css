@@ -13,8 +13,16 @@
 .mdl-button {
     border-radius: 8px !important;
     margin-top: 8px;
+    transition: transform .2s;
+}
+.mdl-button:hover:enabled {
+    transform: scale(1.1);
+}
+.mdl-button:hover:disabled {
+    cursor:not-allowed;
 }
 
 .green{
     background-color: rgb(73, 179, 143) !important;
 }
+

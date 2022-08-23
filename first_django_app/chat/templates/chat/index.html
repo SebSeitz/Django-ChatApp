@@ -7,12 +7,13 @@
 <!--the following only shows if user is logged in-->
 
 <div id="messageContainer">
-{% for message in messages %}
-<div>
-    <span class="color-gray">[{{ message.created_at.isoformat }}] </span> {{ message.author }}: <i>{{ message.text }} </i>
+    {% for message in messages %}
+    <div>
+        <span class="color-gray">[{{ message.created_at.isoformat }}] </span> {{ message.author }}: <i>{{ message.text }} </i>
+    </div>
+    {% endfor %}
 </div>
-{% endfor %}
-</div>
+
 
 <script>
     async function sendMessage() {
@@ -49,23 +50,33 @@
             `;
 
             console.log('success');
+            document.getElementById('messageField').value = '';
+
 
         } catch (e) {
 
             console.error('An error occurred', e)
         }
     }
+
+    function success(){
+        if(document.getElementById("messageField").value==="") {
+            document.getElementById('sendButton').disabled = true;
+        } else {
+            document.getElementById('sendButton').disabled = false;
+        }
+    }
+
 </script>
 
 <!-- <form action="/chat/" method="post"> -->
 <form onsubmit="sendMessage(); return false" method="post">
     {% csrf_token %}
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" name="textmessage" id="messageField">
+        <input class="mdl-textfield__input" type="text" name="textmessage" id="messageField" onkeyup="success()">
         <label class="mdl-textfield__label" for="messageField">Text...</label>
     </div>
-
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    <button id="sendButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
         Send
     </button>
 </form>
