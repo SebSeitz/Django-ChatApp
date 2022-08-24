@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<script>
+    function showLoading(){
+        document.getElementById('p2').classList.remove('d-none');
+    }
+
+</script>
 <h1>Login</h1>
 
 {% if wrongPassword %}
@@ -11,7 +17,7 @@
 <div class="success-message">You have successfully registered!</div>
 {% endif %}
 
-<form method="POST" action="/login/">
+<form onsubmit="showLoading()" method="POST" action="/login/">
     {% csrf_token %}
     <input type="hidden" value="{{redirect}}" name="redirect">
     <div><input name="username" type="text"></div>
@@ -23,5 +29,9 @@
         <a href="../register">Register</a>
     </div>
 </form>
+
+
+<div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate d-none"></div>
+
 
 {% endblock %}

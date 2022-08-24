@@ -26,3 +26,11 @@
     background-color: rgb(73, 179, 143) !important;
 }
 
+.mdl-progress{
+    margin-top: 15px;
+}
+
+.d-none{
+    display: none;
+}
+

@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.core import serializers # means that object is being transformed into the correcte form
+from django.core import serializers # means that an object is being transformed into the correct form
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -41,10 +41,8 @@ def register_user(request):
 
        if password1==password2:
             if User.objects.filter(username=username).exists():
-               print('Username already taken')
                return render(request, 'auth/register.html', {'userTaken': True})
             elif User.objects.filter(email=email).exists():
-               print('Email already taken')
                # messages.info(request, 'Email already taken')
                return render(request, 'auth/register.html', {'emailTaken': True})
             else:
