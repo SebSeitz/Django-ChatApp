@@ -6,6 +6,13 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.single-message{
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
 .success-message{
     color: rgb(58, 160, 58);
 }
@@ -28,9 +35,38 @@
 
 .mdl-progress{
     margin-top: 15px;
+    height: 8px;
 }
 
 .d-none{
     display: none;
+}
+
+.messageContainer{
+    border: 1px solid rgb(122, 108, 108, .5);
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+    background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.5)), url('../img/chat_background.jpg');
+
+}
+
+
+.username-field{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.mdl-chip{
+    background-color: rgb(197, 227, 237);
+    margin-left: 5px;
+}
+
+.mdl-chip__text{
+    font-size: 20px;
+}
+
+span{
+    margin-right: 5px;
 }
 

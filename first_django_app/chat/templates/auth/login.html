@@ -20,8 +20,8 @@
 <form onsubmit="showLoading()" method="POST" action="/login/">
     {% csrf_token %}
     <input type="hidden" value="{{redirect}}" name="redirect">
-    <div><input name="username" type="text"></div>
-    <div><input name="password" type="password"></div>
+    <div><input name="username" type="text" placeholder="Username"></div>
+    <div><input name="password" type="password" placeholder="Password"></div>
     <div>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
             Login

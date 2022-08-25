@@ -6,10 +6,12 @@
 {% if request.user.is_authenticated %}
 <!--the following only shows if user is logged in-->
 
-<div id="messageContainer">
+<div id="messageContainer" class="messageContainer">
     {% for message in messages %}
-    <div>
-        <span class="color-gray">[{{ message.created_at.isoformat }}] </span> {{ message.author }}: <i>{{ message.text }} </i>
+    <div class="single-message">
+        <span class="color-gray">[{{ message.created_at.isoformat }}] </span> <span class="username-field"> {{ message.author }}: </span><span class="mdl-chip">
+            <span class="mdl-chip__text">{{ message.text }} </span>
+        </span>
     </div>
     {% endfor %}
 </div>
@@ -44,8 +46,10 @@
 
             document.getElementById('deleteMessage').remove();
             messageContainer.innerHTML += `
-            <div>
-              <span class="color-gray">[${finalJson.fields.created_at}]</span> {{ request.user.username }}: <i>${messageField}</i>
+            <div class="single-message">
+              <span class="color-gray">[${finalJson.fields.created_at}]</span> <span class="username-field"> {{ request.user.username }}: </span> </span><span class="mdl-chip">
+            <span class="mdl-chip__text">${messageField}</span>
+        </span>
             </div>
             `;
 
