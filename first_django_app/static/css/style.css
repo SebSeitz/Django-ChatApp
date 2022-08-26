@@ -6,6 +6,10 @@
     color: rgba(0, 0, 0, 0.5);
 }
 
+.flex-end{
+    justify-content: end !important;
+}
+
 .single-message{
     margin-bottom: 8px;
     display: flex;

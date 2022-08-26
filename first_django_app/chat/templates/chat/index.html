@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+
 <!-- Textfield with Floating Label -->
 
 {% if request.user.is_authenticated %}
@@ -8,16 +10,28 @@
 
 <div id="messageContainer" class="messageContainer">
     {% for message in messages %}
-    <div class="single-message">
+     <div class="single-message" id="single-message{{ forloop.counter0 }}">
         <span class="color-gray">[{{ message.created_at.isoformat }}] </span> <span class="username-field"> {{ message.author }}: </span><span class="mdl-chip">
             <span class="mdl-chip__text">{{ message.text }} </span>
         </span>
     </div>
+
+
     {% endfor %}
 </div>
 
 
 <script>
+
+function changeChatLayout(){
+        for (let i = 0; i < 70; i++) {
+            document.getElementById(`single-message${i}`)
+            if (i % 2) {
+            document.getElementById(`single-message${i}`).classList.add('flex-end');
+          }
+        }
+    }
+
     async function sendMessage() {
         let fd = new FormData();
         let messageField = document.getElementById('messageField').value; //in neuem JS nicht mehr nötig
@@ -46,7 +60,7 @@
 
             document.getElementById('deleteMessage').remove();
             messageContainer.innerHTML += `
-            <div class="single-message">
+            <div class="single-message" id="single-message{{ forloop.counter0 }}">
               <span class="color-gray">[${finalJson.fields.created_at}]</span> <span class="username-field"> {{ request.user.username }}: </span> </span><span class="mdl-chip">
             <span class="mdl-chip__text">${messageField}</span>
         </span>
