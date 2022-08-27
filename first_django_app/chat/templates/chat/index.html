@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-
-
 <!-- Textfield with Floating Label -->
 
 {% if request.user.is_authenticated %}
@@ -11,11 +9,10 @@
 <div id="messageContainer" class="messageContainer">
     {% for message in messages %}
      <div class="single-message" id="single-message{{ forloop.counter0 }}">
-        <span class="color-gray">[{{ message.created_at.isoformat }}] </span> <span class="username-field"> {{ message.author }}: </span><span class="mdl-chip">
+        <div class="date-and-name"><span class="color-gray">[{{ message.created_at.isoformat }}] </span> <span class="username-field"> {{ message.author }}: </span> </div><span class="mdl-chip">
             <span class="mdl-chip__text">{{ message.text }} </span>
         </span>
     </div>
-
 
     {% endfor %}
 </div>
@@ -23,8 +20,10 @@
 
 <script>
 
+let messageCount = "{{ messages.count}}";
+console.log('messagecount:', messageCount);
 function changeChatLayout(){
-        for (let i = 0; i < 70; i++) {
+        for (let i = 0; i < 1000000; i++) {
             document.getElementById(`single-message${i}`)
             if (i % 2) {
             document.getElementById(`single-message${i}`).classList.add('flex-end');
@@ -33,6 +32,8 @@ function changeChatLayout(){
     }
 
     async function sendMessage() {
+        messageCount++;
+        console.log(messageCount);
         let fd = new FormData();
         let messageField = document.getElementById('messageField').value; //in neuem JS nicht mehr nötig
         let token = '{{csrf_token}}';
@@ -60,12 +61,14 @@ function changeChatLayout(){
 
             document.getElementById('deleteMessage').remove();
             messageContainer.innerHTML += `
-            <div class="single-message" id="single-message{{ forloop.counter0 }}">
-              <span class="color-gray">[${finalJson.fields.created_at}]</span> <span class="username-field"> {{ request.user.username }}: </span> </span><span class="mdl-chip">
+            <div class="single-message" id="single-message${messageCount}">
+              <span class="color-gray">[${finalJson.fields.created_at}]</span> <span class="username-field"> {{ request.user.username }}: </span>
+             <span class="mdl-chip">
             <span class="mdl-chip__text">${messageField}</span>
-        </span>
-            </div>
             `;
+            if (messageCount % 2 ==0) {
+            document.getElementById(`single-message${messageCount}`).classList.add('flex-end');
+        }
 
             console.log('success');
             document.getElementById('messageField').value = '';
@@ -88,7 +91,8 @@ function changeChatLayout(){
 </script>
 
 <!-- <form action="/chat/" method="post"> -->
-<form onsubmit="sendMessage(); return false" method="post">
+
+<form class="chatForm" onsubmit="sendMessage(); return false" method="post">
     {% csrf_token %}
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <input class="mdl-textfield__input" type="text" name="textmessage" id="messageField" onkeyup="success()">
@@ -98,6 +102,7 @@ function changeChatLayout(){
         Send
     </button>
 </form>
+
 <!-- Accent-colored raised button with ripple -->
 
 {% else %}
