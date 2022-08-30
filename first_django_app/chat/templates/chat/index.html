@@ -15,20 +15,42 @@
     </div>
 
     {% endfor %}
+    <form class="chatForm" onsubmit="sendMessage(); return false" method="post">
+        {% csrf_token %}
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" name="textmessage" id="messageField" onkeyup="success()">
+            <label class="mdl-textfield__label" for="messageField">Text...</label>
+        </div>
+        <button id="sendButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
+            Send
+        </button>
+    </form>
 </div>
+<button class="scroll-down-button" onclick="scrollDown()">Down</button>
+<div class="hidden-container" id="bottom-container"></div>
+
+
 
 
 <script>
+     function scrollDown(){
+         setTimeout(() => {
+            document.getElementById('bottom-container').scrollIntoView({ behavior: 'smooth'});
+         }, 30);
+
+    }
 
 let messageCount = "{{ messages.count}}";
 console.log('messagecount:', messageCount);
 function changeChatLayout(){
+    scrollDown();
         for (let i = 0; i < 1000000; i++) {
             document.getElementById(`single-message${i}`)
             if (i % 2) {
             document.getElementById(`single-message${i}`).classList.add('flex-end');
           }
         }
+
     }
 
     async function sendMessage() {
@@ -78,6 +100,7 @@ function changeChatLayout(){
 
             console.error('An error occurred', e)
         }
+        scrollDown();
     }
 
     function success(){
@@ -92,16 +115,7 @@ function changeChatLayout(){
 
 <!-- <form action="/chat/" method="post"> -->
 
-<form class="chatForm" onsubmit="sendMessage(); return false" method="post">
-    {% csrf_token %}
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" name="textmessage" id="messageField" onkeyup="success()">
-        <label class="mdl-textfield__label" for="messageField">Text...</label>
-    </div>
-    <button id="sendButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
-        Send
-    </button>
-</form>
+
 
 <!-- Accent-colored raised button with ripple -->
 
