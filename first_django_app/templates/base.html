@@ -34,9 +34,13 @@
             <div class="mdl-layout-spacer"></div>
             <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
+                {% if request.user.is_authenticated %}
+                <a class="mdl-navigation__link" href="../chat">Chatroom</a>
+                <a class="mdl-navigation__link" href="../logout">Logout</a>
+                {% else %}
                 <a class="mdl-navigation__link" href="../register">Sign up</a>
                 <a class="mdl-navigation__link" href="../login">Sign in</a>
-                <a class="mdl-navigation__link" href="../chat">Chatroom</a>
+                {% endif %}
                 <a class="mdl-navigation__link" href="">Imprint</a>
             </nav>
         </div>
@@ -44,9 +48,13 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Chatroom</span>
         <nav class="mdl-navigation">
+            {% if request.user.is_authenticated %}
+            <a class="mdl-navigation__link" href="../chat">Chatroom</a>
+            <a class="mdl-navigation__link" href="../logout">Logout</a>
+            {% else %}
             <a class="mdl-navigation__link" href="../register">Sign up</a>
             <a class="mdl-navigation__link" href="/login">Sign in</a>
-            <a class="mdl-navigation__link" href="../chat">Chatroom</a>
+            {% endif %}
             <a class="mdl-navigation__link" href="">Imprint</a>
         </nav>
     </div>

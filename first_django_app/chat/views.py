@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from .models import Chat, Message
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -56,3 +56,9 @@ def register_user(request):
 
    else:
           return render(request, 'auth/register.html')
+
+
+
+def logout_view(request):
+   logout(request)
+   return HttpResponseRedirect('/register/')

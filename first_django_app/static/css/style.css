@@ -67,17 +67,17 @@
     background-color: rgb(197, 227, 237);
     margin-left: 5px;
     max-width: 40vw;
-    height: 120px;
-    overflow-wrap: break-word !important;
+    min-height: 100px;
 }
 
 .mdl-chip__text{
     font-size: 20px;
     max-width: 40vw;
     height: 120px;
-    flex-wrap: wrap !important;
     display: flex !important;
-    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+    word-break: break-all;
+
 }
 
 span{
