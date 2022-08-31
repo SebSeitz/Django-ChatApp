@@ -37,7 +37,6 @@
          setTimeout(() => {
             document.getElementById('bottom-container').scrollIntoView({ behavior: 'smooth'});
          }, 30);
-
     }
 
 let messageCount = "{{ messages.count}}";
@@ -50,7 +49,6 @@ function changeChatLayout(){
             document.getElementById(`single-message${i}`).classList.add('flex-end');
           }
         }
-
     }
 
     async function sendMessage() {

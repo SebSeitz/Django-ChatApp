@@ -19,6 +19,7 @@
     font-size: 20px;
     flex-direction: column;
     max-width: 40vw;
+    min-height: 120px;
 }
 
 .success-message{
@@ -68,13 +69,13 @@
     background-color: rgb(197, 227, 237);
     margin-left: 5px;
     max-width: 40vw;
-    min-height: 100px;
+    height: unset !important;
 }
 
 .mdl-chip__text{
     font-size: 20px;
     max-width: 40vw;
-    height: 120px;
+    height: unset !important;
     display: flex !important;
     white-space: pre-wrap !important;
     word-break: break-all;
