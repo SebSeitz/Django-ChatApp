@@ -1,34 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Register</h1>
+<div class="form-container">
+  <h1 class="h1-register">Register</h1>
 
-{% if userTaken %}
-<p>Username already taken</p>
-{% endif %}
+  {% if userTaken %}
+  <p>Username already taken</p>
+  {% endif %}
 
-{% if emailTaken %}
-<p>Email already taken</p>
-{% endif %}
+  {% if emailTaken %}
+  <p>Email already taken</p>
+  {% endif %}
 
-{% if noMatch %}
-<p>Passwords don't match</p>
-{% endif %}
+  {% if noMatch %}
+  <p>Passwords don't match</p>
+  {% endif %}
 
-<!-- {% for message in messages%}
+  <!-- {% for message in messages%}
 <h2>{{message}}</h2>
 {% endfor %} -->
 
 
-<form method="POST" action="/register/">
+  <form method="POST" action="/register/" class="register-form">
     {% csrf_token %}
-    <div><input name="username" placeholder= "Enter your Username" type="text"></div>
-    <div><input name="password1" placeholder="Enter a password" type="password"></div>
-    <div><input name="password2" placeholder="Confirm your password" type="password"></div>
-    <div><input name="email" placeholder="Enter your email address" type="email"></div>
+    <div><input class="form-input" name="username" placeholder="Enter your Username" type="text"></div>
+    <div><input class="form-input" name="password1" placeholder="Enter a password" type="password"></div>
+    <div><input class="form-input" name="password2" placeholder="Confirm your password" type="password"></div>
+    <div><input class="form-input" name="email" placeholder="Enter your email address" type="email"></div>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored green">
-        Register
-      </button>
-</form>
+      Register
+    </button>
+  </form>
+
+</div>
+
 
 
 {% endblock %}

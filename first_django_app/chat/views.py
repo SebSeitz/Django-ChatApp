@@ -27,7 +27,8 @@ def login_view(request):
       user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
       if user:
          login(request, user)
-         return HttpResponseRedirect('/chat/') # get a get variable (=in url) to redirect
+         # get a get variable (=in url) to redirect
+         return HttpResponseRedirect('/chat/')
       else:
          return render(request, 'auth/login.html', {'wrongPassword':True})
    return render(request, 'auth/login.html')
@@ -51,14 +52,13 @@ def register_user(request):
                return render(request, 'auth/login.html', {'success': True})
 
        else:
-          print('password not matching')
+         print('password not matching')
        return render(request, 'auth/register.html', {'noMatch': True})
 
    else:
-          return render(request, 'auth/register.html')
-
+      return render(request, 'auth/register.html')
 
 
 def logout_view(request):
-   logout(request)
-   return HttpResponseRedirect('/register/')
+    logout(request)
+    return HttpResponseRedirect('/register/')

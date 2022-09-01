@@ -8,8 +8,9 @@
 
 <div id="messageContainer" class="messageContainer">
     {% for message in messages %}
-     <div class="single-message" id="single-message{{ forloop.counter0 }}">
-        <div class="date-and-name"><span class="color-gray">[{{ message.created_at.isoformat }}] </span> <span class="username-field"> {{ message.author }}: </span> </div><span class="mdl-chip">
+    <div class="single-message" id="single-message{{ forloop.counter0 }}">
+        <div class="date-and-name"><span class="color-gray">[{{ message.created_at.isoformat }}] </span> <span
+                class="username-field"> {{ message.author }}: </span> </div><span class="mdl-chip">
             <span class="mdl-chip__text">{{ message.text }} </span>
         </span>
     </div>
@@ -21,33 +22,33 @@
             <input class="mdl-textfield__input" type="text" name="textmessage" id="messageField" onkeyup="success()">
             <label class="mdl-textfield__label" for="messageField">Text...</label>
         </div>
-        <button id="sendButton" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
+        <button id="sendButton"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" disabled>
             Send
         </button>
     </form>
 </div>
-<button class="scroll-down-button" onclick="scrollDown()">Down</button>
 <div class="hidden-container" id="bottom-container"></div>
 
 
 
 
 <script>
-     function scrollDown(){
-         setTimeout(() => {
-            document.getElementById('bottom-container').scrollIntoView({ behavior: 'smooth'});
-         }, 30);
+    function scrollDown() {
+        setTimeout(() => {
+            document.getElementById('bottom-container').scrollIntoView({ behavior: 'smooth' });
+        }, 30);
     }
 
-let messageCount = "{{ messages.count}}";
-console.log('messagecount:', messageCount);
-function changeChatLayout(){
-    scrollDown();
+    let messageCount = "{{ messages.count}}";
+    console.log('messagecount:', messageCount);
+    function changeChatLayout() {
+        scrollDown();
         for (let i = 0; i < 1000000; i++) {
             document.getElementById(`single-message${i}`)
             if (i % 2) {
-            document.getElementById(`single-message${i}`).classList.add('flex-end');
-          }
+                document.getElementById(`single-message${i}`).classList.add('flex-end');
+            }
         }
     }
 
@@ -86,9 +87,9 @@ function changeChatLayout(){
              <span class="mdl-chip">
             <span class="mdl-chip__text">${messageField}</span>
             `;
-            if (messageCount % 2 ==0) {
-            document.getElementById(`single-message${messageCount}`).classList.add('flex-end');
-        }
+            if (messageCount % 2 == 0) {
+                document.getElementById(`single-message${messageCount}`).classList.add('flex-end');
+            }
 
             console.log('success');
             document.getElementById('messageField').value = '';
@@ -101,8 +102,8 @@ function changeChatLayout(){
         scrollDown();
     }
 
-    function success(){
-        if(document.getElementById("messageField").value==="") {
+    function success() {
+        if (document.getElementById("messageField").value === "") {
             document.getElementById('sendButton').disabled = true;
         } else {
             document.getElementById('sendButton').disabled = false;

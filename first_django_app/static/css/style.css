@@ -1,107 +1,236 @@
-
 .page-content {
-    padding: 100px 100px;
+    padding: 100px 300px;
 }
 
 .color-gray {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.flex-end{
+.flex-end {
     align-items: flex-end !important;
     color: yellow;
 }
 
-.single-message{
+.single-message {
     margin-bottom: 8px;
     display: flex;
     align-items: flex-start;
     font-size: 20px;
     flex-direction: column;
-    max-width: 40vw;
+    /* max-width: 40vw; */
     min-height: 120px;
 }
 
-.success-message{
+.success-message {
     color: rgb(58, 160, 58);
 }
 
 .mdl-button {
     border-radius: 8px !important;
-    margin-top: 8px;
-    transition: transform .2s;
+    transition: transform 0.2s;
+    margin-left: 16px;
 }
 .mdl-button:hover:enabled {
     transform: scale(1.1);
 }
 .mdl-button:hover:disabled {
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
 
-.green{
+.green {
     background-color: rgb(73, 179, 143) !important;
+    margin-left: 0 !important;
+    margin-top: 24px;
 }
 
-.mdl-progress{
+.mdl-progress {
     margin-top: 15px;
     height: 8px;
 }
 
-.d-none{
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1-register{
+    text-align: center;
+}
+
+.form-container{
+    border: 8px solid rgba(119, 145, 219, 0.5);
+    border-radius: 5px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+        url("../img/chat_background.jpg");
+    height: 55vh;
+    width: 50vw;
+}
+
+.form-input{
+    width: 35vw;
+    height: 30px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    padding-left: 8px;
+}
+
+.d-none {
     display: none;
 }
 
-.messageContainer{
-    border: 1px solid rgb(122, 108, 108, .5);
-    padding: 10px;
+.messageContainer {
+    border: 8px solid rgba(119, 145, 219, 0.5);
+    padding-top: 25px;
     border-radius: 8px;
     position: relative;
-    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('../img/chat_background.jpg');
-    width: 42vw;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+        url("../img/chat_background.jpg");
+    /* width: 42vw; */
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
-.username-field{
+.username-field {
     font-weight: bold;
     font-size: 20px;
 }
 
-.mdl-chip{
+.mdl-chip {
     background-color: rgb(197, 227, 237);
-    margin-left: 5px;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 8px;
     max-width: 40vw;
     height: unset !important;
 }
 
-.mdl-chip__text{
-    font-size: 20px;
+.mdl-chip__text {
+    font-size: 22px;
     max-width: 40vw;
     height: unset !important;
     display: flex !important;
     white-space: pre-wrap !important;
     word-break: break-all;
-
 }
 
-span{
+span {
     margin-right: 5px;
 }
 
-.chatForm{
-  position: absolute;
-  bottom: -65px;
+.chatForm {
+    position: fixed;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
 }
 
-.single-message-container{
+.single-message-container {
     display: flex;
 }
 
-.scroll-down-button{
+.scroll-down-button {
     position: absolute;
     right: 30px;
     top: 30px;
 }
 
-.bottom-container{
+.bottom-container {
     position: absolute;
     bottom: 1px;
+}
+
+.mdl-textfield__input {
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 8px;
+}
+
+.mdl-textfield__label{
+    padding-left: 8px;
+}
+
+.date-and-name {
+    margin-bottom: 6px;
+}
+
+@media (max-width: 1260px) {
+    .mdl-chip__text {
+        font-size: 20px;
+    }
+    .page-content {
+        padding: 100px 250px;
+    }
+}
+@media (max-width: 1180px) {
+    .mdl-chip__text {
+        font-size: 18px;
+    }
+    .page-content {
+        padding: 100px 230px;
+    }
+
+    .color-gray {
+        font-size: 16px;
+    }
+    .username-field {
+        font-size: 16px;
+    }
+    .h1-register{
+       font-size: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    .mdl-chip__text {
+        font-size: 18px;
+    }
+    .page-content {
+        padding: 100px 190px;
+    }
+    .color-gray {
+        font-size: 14px;
+    }
+    .username-field {
+        font-size: 14px;
+    }
+
+    .messageContainer{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+@media (max-width: 720px) {
+    .mdl-chip__text {
+        font-size: 16px;
+    }
+    .page-content {
+        padding: 100px 160px;
+    }
+
+}
+@media (max-width: 600px) {
+    .mdl-chip__text {
+        font-size: 15px;
+    }
+    .page-content {
+        padding: 100px 100px;
+    }
+    .h1-register{
+        font-size: 30px;
+     }
+     .form-input{
+        font-size: 10px;
+     }
+
+}
+@media (max-width: 450px) {
+
+    .mdl-chip__text {
+        font-size: 14px;
+    }
+    .page-content {
+        padding: 100px 70px;
+    }
+
 }
