@@ -15,6 +15,10 @@
   <p>Passwords don't match</p>
   {% endif %}
 
+  {% if emptyUser%}
+  <p>Enter a username</p>
+  {% endif %}
+
   <!-- {% for message in messages%}
 <h2>{{message}}</h2>
 {% endfor %} -->
@@ -22,10 +26,10 @@
 
   <form method="POST" action="/register/" class="register-form">
     {% csrf_token %}
-    <div><input class="form-input" name="username" placeholder="Enter your Username" type="text"></div>
-    <div><input class="form-input" name="password1" placeholder="Enter a password" type="password"></div>
-    <div><input class="form-input" name="password2" placeholder="Confirm your password" type="password"></div>
-    <div><input class="form-input" name="email" placeholder="Enter your email address" type="email"></div>
+    <div><input class="form-input" name="username" placeholder="Enter username" type="text"></div>
+    <div><input class="form-input" name="password1" placeholder="Enter password" type="password"></div>
+    <div><input class="form-input" name="password2" placeholder="Confirm password" type="password"></div>
+    <div><input class="form-input" name="email" placeholder="Enter email" type="email"></div>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored green">
       Register
     </button>

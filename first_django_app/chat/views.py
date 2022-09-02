@@ -1,4 +1,6 @@
+from asyncio.windows_events import NULL
 from email import message
+from queue import Empty
 from django.http import HttpResponseRedirect
 from .models import Chat, Message
 from django.shortcuts import render, redirect
@@ -40,12 +42,16 @@ def register_user(request):
        username=request.POST['username']
        email=request.POST['email']
 
+       if not username:
+            return render(request, 'auth/register.html', {'emptyUser': True})
        if password1==password2:
             if User.objects.filter(username=username).exists():
                return render(request, 'auth/register.html', {'userTaken': True})
             elif User.objects.filter(email=email).exists():
                # messages.info(request, 'Email already taken')
                return render(request, 'auth/register.html', {'emailTaken': True})
+            elif not username:
+               return render(request, 'auth/register.html', {'emptyUser': True})
             else:
                user =User.objects.create_user(username=username, email=email, password=password1)
                user.save()
