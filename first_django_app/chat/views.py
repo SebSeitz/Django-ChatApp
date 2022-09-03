@@ -1,10 +1,7 @@
-from asyncio.windows_events import NULL
-from email import message
-from queue import Empty
+
 from django.http import HttpResponseRedirect
 from .models import Chat, Message
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
@@ -36,7 +33,7 @@ def login_view(request):
    return render(request, 'auth/login.html')
 
 def register_user(request):
-   if request.method == 'POST':
+    if request.method == 'POST':
        password1=request.POST['password1']
        password2=request.POST['password2']
        username=request.POST['username']
@@ -61,8 +58,8 @@ def register_user(request):
          print('password not matching')
        return render(request, 'auth/register.html', {'noMatch': True})
 
-   else:
-      return render(request, 'auth/register.html')
+    else:
+       return render(request, 'auth/register.html')
 
 
 def logout_view(request):
