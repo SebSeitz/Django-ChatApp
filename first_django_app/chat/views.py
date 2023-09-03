@@ -11,8 +11,11 @@ from django.core import serializers # means that an object is being transformed 
 # Create your views here.
 @login_required(login_url='/login/')
 def index(request):
+   """
+   This method creates new messages and adds them to the chat object;
+   It also serializes the object
+   """
    if request.method == 'POST':
-      print("received data " + request.POST['textmessage'])
       myChat = Chat.objects.get(id=1)
       new_message = Message.objects.create(text=request.POST['textmessage'], chat=myChat, author=request.user, receiver=request.user)
       serialized_obj = serializers.serialize('json', [new_message])
@@ -21,18 +24,22 @@ def index(request):
    return render(request, 'chat/index.html', {'messages': chatMessages})
 
 def login_view(request):
-   # redirect = request.GET.get('next')
+   """
+   This method handles the user login
+   """
    if request.method == 'POST':
       user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
       if user:
          login(request, user)
-         # get a get variable (=in url) to redirect
          return HttpResponseRedirect('/chat/')
       else:
-         return render(request, 'auth/login.html', {'wrongPassword':True})
+         return render(request, 'auth/login.html', {'wrongCredentials':True})
    return render(request, 'auth/login.html')
 
 def register_user(request):
+    """
+   This method handles the user registration and checks for input errors by the user
+    """
     if request.method == 'POST':
        password1=request.POST['password1']
        password2=request.POST['password2']
@@ -45,7 +52,6 @@ def register_user(request):
             if User.objects.filter(username=username).exists():
                return render(request, 'auth/register.html', {'userTaken': True})
             elif User.objects.filter(email=email).exists():
-               # messages.info(request, 'Email already taken')
                return render(request, 'auth/register.html', {'emailTaken': True})
             elif not username:
                return render(request, 'auth/register.html', {'emptyUser': True})
@@ -55,13 +61,15 @@ def register_user(request):
                return render(request, 'auth/login.html', {'success': True})
 
        else:
-         print('password not matching')
-       return render(request, 'auth/register.html', {'noMatch': True})
+         return render(request, 'auth/register.html', {'noMatch': True})
 
     else:
        return render(request, 'auth/register.html')
 
 
 def logout_view(request):
+    """
+    This method handles the user logout
+    """
     logout(request)
     return HttpResponseRedirect('/register/')
